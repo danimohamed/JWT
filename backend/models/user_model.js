@@ -1,4 +1,3 @@
-import e from "cors";
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
@@ -6,14 +5,14 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-
     lname: {
         type: String,
         required: true
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true // Pour éviter les emails en double
     },
     pwd: {
         type: String,
@@ -22,5 +21,4 @@ const userSchema = new mongoose.Schema({
 });
 
 const UserModel = mongoose.model("User", userSchema);
-
 export default UserModel;
