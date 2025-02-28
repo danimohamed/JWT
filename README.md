@@ -1,26 +1,109 @@
-<!-- 
-This file contains the README documentation for the JWT project.
+# JWT Authentication in Express.js
 
-## JSON Web Token (JWT)
+## Introduction
+This project demonstrates how to implement JSON Web Token (JWT) authentication in an Express.js application. JWT is a secure method for transmitting information between parties as a JSON object.
 
-JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed. JWTs can be signed using a secret (with the HMAC algorithm) or a public/private key pair using RSA or ECDSA.
+## Features
+- User registration and login
+- JWT token generation and verification
+- Protected routes requiring authentication
 
-### Use Cases
+## Technologies Used
+- Node.js
+- Express.js
+- JSON Web Token (JWT)
+- bcrypt.js (for password hashing)
+- MongoDB & Mongoose (optional for user storage)
 
-1. **Authentication**: Once the user is logged in, each subsequent request will include the JWT, allowing the user to access routes, services, and resources that are permitted with that token.
-2. **Information Exchange**: JWTs are a good way of securely transmitting information between parties because they can be signed, which means you can be sure that the senders are who they say they are.
+## Installation
 
-### Structure
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/yourusername/jwt-express-auth.git
+   cd jwt-express-auth
+   ```
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+3. Create a `.env` file and add the following variables:
+   ```env
+   PORT=5000
+   JWT_SECRET=your_secret_key
+   MONGO_URI=your_mongodb_connection_string (if using MongoDB)
+   ```
+4. Start the server:
+   ```sh
+   npm start
+   ```
 
-A JWT is a string consisting of three parts, separated by dots (.), and serialized using base64. In the most common serialization format, compact serialization, the JWT looks something like this: `xxxxx.yyyyy.zzzzz`.
+## Project Structure
+```
+.
+├── server.js
+├── routes
+│   ├── authRoutes.js
+├── controllers
+│   ├── authController.js
+├── models
+│   ├── User.js (if using MongoDB)
+├── middleware
+│   ├── authMiddleware.js
+├── .env
+├── package.json
+└── README.md
+```
 
-1. **Header**: The header typically consists of two parts: the type of the token, which is JWT, and the signing algorithm being used, such as HMAC SHA256 or RSA.
-2. **Payload**: The second part of the token is the payload, which contains the claims. Claims are statements about an entity (typically, the user) and additional data.
-3. **Signature**: To create the signature part, you have to take the encoded header, the encoded payload, a secret, the algorithm specified in the header, and sign that.
+## Usage
 
-### Example
+### 1. Register a User
+Endpoint: `POST /api/auth/register`
 
-Here is an example of a decoded JWT:
+Request Body:
+```json
+{
+  "username": "testuser",
+  "email": "test@example.com",
+  "password": "password123"
+}
+```
+Response:
+```json
+{
+  "message": "User registered successfully"
+}
+```
 
--->
-# JWT
+### 2. Login a User
+Endpoint: `POST /api/auth/login`
+
+Request Body:
+```json
+{
+  "email": "test@example.com",
+  "password": "password123"
+}
+```
+Response:
+```json
+{
+  "token": "your_jwt_token"
+}
+```
+
+### 3. Access Protected Route
+Endpoint: `GET /api/protected`
+
+Headers:
+```json
+{
+  "Authorization": "Bearer your_jwt_token"
+}
+```
+Response:
+```json
+{
+  "message": "Access granted to protected route"
+}
+```
+
