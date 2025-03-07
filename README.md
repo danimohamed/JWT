@@ -1,109 +1,92 @@
-# JWT Authentication in Express.js
+# JWT Authentication Project
 
-## Introduction
-This project demonstrates how to implement JSON Web Token (JWT) authentication in an Express.js application. JWT is a secure method for transmitting information between parties as a JSON object.
+This project demonstrates a simple JWT (JSON Web Token) authentication system using a React frontend and a Node.js backend.
 
-## Features
-- User registration and login
-- JWT token generation and verification
-- Protected routes requiring authentication
+## Project Structure
 
-## Technologies Used
+```
+JWT/
+├── backend/
+│   ├── controllers/
+│   ├── models/
+│   ├── routes/
+│   ├── server.js
+│   └── ...other backend files
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── Login.jsx
+│   │   │   ├── SignUp.jsx
+│   │   ├── pages/
+│   │   │   ├── Books.jsx
+│   │   ├── App.js
+│   │   ├── index.js
+│   └── ...other frontend files
+└── README.md
+```
+
+## Getting Started
+
+### Prerequisites
+
 - Node.js
-- Express.js
-- JSON Web Token (JWT)
-- bcrypt.js (for password hashing)
-- MongoDB & Mongoose (optional for user storage)
+- npm or yarn
 
-## Installation
+### Backend Setup
 
-1. Clone the repository:
+1. Navigate to the backend directory:
    ```sh
-   git clone https://github.com/yourusername/jwt-express-auth.git
-   cd jwt-express-auth
+   cd backend
    ```
+
 2. Install dependencies:
    ```sh
    npm install
    ```
-3. Create a `.env` file and add the following variables:
-   ```env
-   PORT=5000
-   JWT_SECRET=your_secret_key
-   MONGO_URI=your_mongodb_connection_string (if using MongoDB)
-   ```
-4. Start the server:
+
+3. Start the backend server:
    ```sh
    npm start
    ```
 
-## Project Structure
-```
-.
-├── server.js
-├── routes
-│   ├── authRoutes.js
-├── controllers
-│   ├── authController.js
-├── models
-│   ├── User.js (if using MongoDB)
-├── middleware
-│   ├── authMiddleware.js
-├── .env
-├── package.json
-└── README.md
-```
+### Frontend Setup
+
+1. Navigate to the frontend directory:
+   ```sh
+   cd frontend
+   ```
+
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+
+3. Start the frontend development server:
+   ```sh
+   npm start
+   ```
 
 ## Usage
 
-### 1. Register a User
-Endpoint: `POST /api/auth/register`
+1. Open your browser and navigate to `http://localhost:3000`.
+2. You can sign up for a new account, log in, and view the list of books.
 
-Request Body:
-```json
-{
-  "username": "testuser",
-  "email": "test@example.com",
-  "password": "password123"
-}
-```
-Response:
-```json
-{
-  "message": "User registered successfully"
-}
-```
+## Project Details
 
-### 2. Login a User
-Endpoint: `POST /api/auth/login`
+### Backend
 
-Request Body:
-```json
-{
-  "email": "test@example.com",
-  "password": "password123"
-}
-```
-Response:
-```json
-{
-  "token": "your_jwt_token"
-}
-```
+- **Node.js**: JavaScript runtime for the backend.
+- **Express**: Web framework for Node.js.
+- **JWT**: JSON Web Token for authentication.
+- **MongoDB**: NoSQL database for storing user and book data.
 
-### 3. Access Protected Route
-Endpoint: `GET /api/protected`
+### Frontend
 
-Headers:
-```json
-{
-  "Authorization": "Bearer your_jwt_token"
-}
-```
-Response:
-```json
-{
-  "message": "Access granted to protected route"
-}
-```
+- **React**: JavaScript library for building user interfaces.
+- **Axios**: Promise-based HTTP client for making API requests.
+- **React Router**: Library for routing in React applications.
 
+## License
+
+This project is licensed under the MIT License.
